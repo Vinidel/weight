@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import WeightHistoryComponent from './WeightHistoryComponent';
+import {BASE_API_URL} from '../config';
 
 class WeightComponent extends Component {
 
@@ -15,7 +16,7 @@ class WeightComponent extends Component {
     }
 
     getWeights = () => {
-      axios.get('api/weights')
+      axios.get(`${BASE_API_URL}/api/weights`)
       .then((response) => {
           this.setState(() => {
               return { history: response.data }
@@ -40,9 +41,7 @@ class WeightComponent extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      const w = this.state.weight;
-      console.log('This is weight', this.state.weight)
-      return axios.post('api/weights', {kilograms: Number.parseFloat(w)})
+      return axios.post(`${BASE_API_URL}/api/weights`, {kilograms: Number.parseFloat(this.state.weight)})
         .then((res) => console.log('Success'))
         .then(this.getWeights)
         .catch(e => console.log('Error', e))
