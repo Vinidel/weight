@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PingComponent from './components/PingComponent';
+import WeightComponent from './components/WeightComponent';
 
 class App extends Component {
   render() {
@@ -12,9 +13,9 @@ class App extends Component {
         <p>
           Deploy React + Go to Heroku using Docker
         </p>
-        <PingComponent />
-
       </header>
+      <PingComponent />
+      <WeightComponent />
     </div>
     );
   }

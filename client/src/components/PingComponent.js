@@ -17,7 +17,7 @@ class PingComponent extends Component {
                 })
             })
             .catch(function (error) {
-                console.log(error);
+                console.log('hey', error);
             });
 
     }
