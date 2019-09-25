@@ -15,7 +15,9 @@ class App extends Component {
         </p>
       </header>
       <PingComponent />
+      <div className="App-content">
       <WeightComponent />
+      </div>
     </div>
     );
   }
