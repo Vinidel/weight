@@ -50,24 +50,22 @@ class WeightComponent extends Component {
   render() {
       return (
         <div className="App-tile">
-          <form className="form-horizontal">
-            <div className="Input-container">
-              <div className="Input-content">
-              <label>
+          <form className="form-group row">
+              <label className="col-sm-2 col-form-label">
                 Kg:
+              </label>
+              <div className="col-sm-10">
                 <input type="number" className="form-control" onChange={this.handleWeightChange}  name="weight" />
-              </label>
               </div>
-              <div>
-              <label>
+              <label className="col-sm-2 col-form-label">
                 Date:
-                <input type="date" className="form-control" onChange={this.handleDateChange}  name="date" />
               </label>
+              <div className="col-sm-10">
+                <input type="date" className="form-control" onChange={this.handleDateChange}  name="date" />
               </div>
-            </div>  
           </form>
           <div className="btn-container">
-            <button type="button" onClick={this.handleSubmit} className="Save-btn">Save</button>
+            <button type="button" onClick={this.handleSubmit} className="btn btn-success">Save</button>
           </div>
           <br />
           <WeightHistoryComponent weights={this.state.history}/>

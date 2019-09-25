@@ -8,16 +8,15 @@ class WeightHistoryComponent extends Component {
 
     renderTableContent = (weights) => {
       return (
-        <table >
+        <table className="table table-striped">
             <tbody>
               <tr>
-                <th>Kg</th>
-                <th>Date</th>
+                <th scope="col">Kg</th>
+                <th scope="col">Date</th>
               </tr>
               {
                 weights.map((weight, i) => {
                   const [year, month, date] = new Date(weight.createdAt).toISOString().substring(0,10).split('-')
-                  console.log('Index is', i); 
                   return (<tr key={i}>
                   <td>{weight.kilograms}</td>
                   <td>{`${date}/${month}/${year}`}</td>
