@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import {BASE_API_URL} from '../config';
-class PingComponent extends Component {
+class TitleComponent extends Component {
 
 
     componentWillMount() {
         axios.get(`${BASE_API_URL}/api/ping`)
-            .then((response) => console.log('Ok'))
+            .then(() => console.log('Ok'))
             .catch(function (error) {
                 console.log('hey', error);
             });
@@ -18,4 +18,4 @@ class PingComponent extends Component {
     }
 }
 
-export default PingComponent; 
+export default TitleComponent; 

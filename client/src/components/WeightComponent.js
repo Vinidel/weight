@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import WeightHistoryComponent from './WeightHistoryComponent';
+import SpinnerComponent from './SpinnerComponent';
 import {BASE_API_URL} from '../config';
 
 class WeightComponent extends Component {
@@ -8,27 +9,27 @@ class WeightComponent extends Component {
     constructor() {
         super();
         this.state = {
-            sent: false,
+            fetching: true,
             weight: 0.00,
             createdAt: '',
             history: []
         }
     }
 
+    componentWillMount() {
+      this.getWeights();
+    }
+
     getWeights = () => {
       axios.get(`${BASE_API_URL}/api/weights`)
       .then((response) => {
           this.setState(() => {
-              return { history: response.data }
+              return { history: response.data, fetching: false }
           })
       })
       .catch(function (error) {
           console.log('hey', error);
       });
-    }
-
-    componentWillMount() {
-      this.getWeights();
     }
 
     handleWeightChange = (event) => {
@@ -47,6 +48,10 @@ class WeightComponent extends Component {
         .catch(e => console.log('Error', e))
   }
 
+  renderSpinner = () => (<SpinnerComponent />)
+  renderWeightHistory = () => {
+    return <WeightHistoryComponent weights={this.state.history}/>;
+  }
   render() {
       return (
         <div className="App-tile">
@@ -55,7 +60,7 @@ class WeightComponent extends Component {
                 Kg:
               </label>
               <div className="col-sm-10">
-                <input type="number" className="form-control" onChange={this.handleWeightChange}  name="weight" />
+                <input type="number" className="form-control" onChange={this.handleWeightChange}  name="weight" min="0" placeholder="0.00"/>
               </div>
               <label className="col-sm-2 col-form-label">
                 Date:
@@ -68,7 +73,7 @@ class WeightComponent extends Component {
             <button type="button" onClick={this.handleSubmit} className="btn btn-success">Save</button>
           </div>
           <br />
-          <WeightHistoryComponent weights={this.state.history}/>
+          {this.state.fetching ? this.renderSpinner() : this.renderWeightHistory()}
         </div>
       );
   }
