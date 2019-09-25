@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import PingComponent from './components/PingComponent';
 import TitleComponent from './components/TitleComponent';
 import WeightComponent from './components/WeightComponent';
 
